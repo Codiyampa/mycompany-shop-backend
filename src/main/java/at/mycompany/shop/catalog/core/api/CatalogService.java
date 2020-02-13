@@ -8,5 +8,6 @@ import at.mycompany.shop.catalog.core.model.jpa.Product;
  */
 
 public interface CatalogService {
-    void saveProductById(Product product, Integer id);
+    Integer createProduct(Product product);
+    Product updateProduct(Product product);
 }

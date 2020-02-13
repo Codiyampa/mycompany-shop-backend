@@ -10,6 +10,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 /**
  * @author: Codiyampa
@@ -24,7 +25,18 @@ public class CatalogResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/product/{id}")
+    @Path("/products/")
+    public Response getProducts() {
+        List<Product> products = catalogDataAccess.getProducts();
+        if(products == null) {
+            return Response.status(Response.Status.NOT_FOUND).entity("No products found").build();
+        }
+        return Response.status(Response.Status.OK).entity(products).build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/products/{id}")
     public Response getProductById(@PathParam("id") Integer id) {
         Product product = catalogDataAccess.getProductById(id);
         if(product == null) {

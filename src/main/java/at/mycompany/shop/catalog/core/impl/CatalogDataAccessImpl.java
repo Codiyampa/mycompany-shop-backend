@@ -4,6 +4,10 @@ import at.mycompany.shop.catalog.core.api.CatalogDataAccess;
 import at.mycompany.shop.catalog.core.model.jpa.Product;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import java.util.List;
 
 /**
  * @author: Codiyampa
@@ -13,8 +17,17 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class CatalogDataAccessImpl implements CatalogDataAccess {
 
+    @Inject
+    EntityManager em;
+
+    @Override
+    public List<Product> getProducts() {
+        Query query = em.createQuery("SELECT p FROM Product p", Product.class);
+        return (List<Product>) query.getResultList();
+    }
+
     @Override
     public Product getProductById(Integer id) {
-        return null;
+        return em.find(Product.class, id);
     }
 }

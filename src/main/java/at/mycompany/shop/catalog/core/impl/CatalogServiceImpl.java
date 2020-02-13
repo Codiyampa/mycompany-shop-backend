@@ -4,6 +4,8 @@ import at.mycompany.shop.catalog.core.api.CatalogService;
 import at.mycompany.shop.catalog.core.model.jpa.Product;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
 
 /**
  * @author: Codiyampa
@@ -13,8 +15,18 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class CatalogServiceImpl implements CatalogService {
 
-    @Override
-    public void saveProductById(Product product, Integer id) {
+    @Inject
+    EntityManager em;
 
+    @Override
+    public Integer createProduct(Product product) {
+        em.persist(product);
+        em.flush();
+        return product.getId();
+    }
+
+    @Override
+    public Product updateProduct(Product product) {
+        return em.merge(product);
     }
 }
