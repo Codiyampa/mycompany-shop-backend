@@ -1,3 +1,4 @@
+/* import data */
 INSERT INTO category(id, name) VALUES(1, 'Top 10');
 INSERT INTO category(id, name) VALUES(2, 'Salat');
 INSERT INTO category(id, name) VALUES(3, 'Pizza');
