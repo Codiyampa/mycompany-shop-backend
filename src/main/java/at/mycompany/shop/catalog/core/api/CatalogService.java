@@ -1,6 +1,6 @@
 package at.mycompany.shop.catalog.core.api;
 
-import at.mycompany.shop.catalog.core.model.jpa.Product;
+import at.mycompany.shop.catalog.core.model.jpa.Order;
 
 /**
  * @author: Codiyampa
@@ -8,6 +8,5 @@ import at.mycompany.shop.catalog.core.model.jpa.Product;
  */
 
 public interface CatalogService {
-    Integer createProduct(Product product);
-    Product updateProduct(Product product);
+    Integer createOrder(Order order);
 }

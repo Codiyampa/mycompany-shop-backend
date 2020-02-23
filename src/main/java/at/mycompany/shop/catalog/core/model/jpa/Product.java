@@ -12,42 +12,30 @@ import java.util.stream.Collectors;
  * @date: 13.02.2020
  */
 
-@Entity
-public class Product {
-
-    private Integer id;
+@Entity(name = "product")
+public class Product extends AbstractBaseEntity {
     private String name;
     private BigDecimal price;
     private Set<Integer> categoryIds;
     private Set<Category> categories = new HashSet<>();
+    private Set<ProductOrderAmount> productOrderAmounts;
 
     /* constructor area */
     public Product() { }
 
-    public Product(Integer id, String name, BigDecimal price) {
-        this.id = id;
+    public Product(String name, BigDecimal price, Set<Category> categories) {
         this.name = name;
         this.price = price;
+        this.categories = categories;
     }
 
-    /* functions area */
+    /* function area */
     @PostLoad
     private void postLoad() {
         categoryIds = categories.stream().map(Category::getId).collect(Collectors.toSet());
     }
 
     /* getter and setter area */
-    @Id
-    @GeneratedValue
-    @Column(updatable = false, nullable = false)
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     @Column(nullable = false)
     public String getName() {
         return name;
@@ -86,5 +74,18 @@ public class Product {
 
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
+    }
+
+    @JsonbTransient
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            mappedBy = "product"
+    )
+    public Set<ProductOrderAmount> getProductOrderAmounts() {
+        return productOrderAmounts;
+    }
+
+    public void setProductOrderAmounts(Set<ProductOrderAmount> productOrderAmounts) {
+        this.productOrderAmounts = productOrderAmounts;
     }
 }

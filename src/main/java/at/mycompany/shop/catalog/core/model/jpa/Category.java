@@ -10,33 +10,19 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-public class Category {
-
-    private Integer id;
+@Entity(name = "category")
+public class Category extends AbstractBaseEntity {
     private String name;
     private Set<Product> products = new HashSet<>();
 
     /* constructor area */
     public Category() { }
 
-    public Category(Integer id, String name) {
-        this.id = id;
+    public Category(String name) {
         this.name = name;
     }
 
     /* getter and setter area */
-    @Id
-    @GeneratedValue
-    @Column(updatable = false, nullable = false)
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     @Column(nullable = false)
     public String getName() {
         return name;

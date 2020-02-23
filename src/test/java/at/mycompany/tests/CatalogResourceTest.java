@@ -28,21 +28,22 @@ public class CatalogResourceTest {
 
     @Test
     public void testProductByIdEndpoint() {
-        Integer productId = 1;
+        Integer productId = 5;
         given()
                 .pathParam("id", productId)
                 .when().get("/catalog/products/{id}")
                 .then()
                 .statusCode(200)
-                .body(is("{\"categoryIds\":[1],\"id\":1,\"name\":\"Getrocknete Apfelstücke 500 Gramm\",\"price\":7.99}"));
+                .body(is("{\"id\":5,\"categoryIds\":[3],\"name\":\"Pizza Calzone\",\"price\":8.80}"));
     }
 
     @Test
     public void testProductsEndpoint() {
         given()
-                .when().get("/catalog/products/")
+                .when().get("/catalog/products")
                 .then()
                 .statusCode(200)
-                .body(is("[{\"categoryIds\":[1],\"id\":1,\"name\":\"Getrocknete Apfelstücke 500 Gramm\",\"price\":7.99},{\"categoryIds\":[1],\"id\":2,\"name\":\"Getrocknete Bananenstücke 500 Gramm\",\"price\":7.99},{\"categoryIds\":[1,2],\"id\":3,\"name\":\"Getrocknete Pflaumenstücke Bio 500 Gramm\",\"price\":9.99}]"));
+                .body("$.size()", is(14),
+                        "[0].name", is("Getrocknete Apfelstücke 500 Gramm"));
     }
 }

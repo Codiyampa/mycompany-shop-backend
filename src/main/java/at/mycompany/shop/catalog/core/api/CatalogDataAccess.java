@@ -1,5 +1,6 @@
 package at.mycompany.shop.catalog.core.api;
 
+import at.mycompany.shop.catalog.core.model.jpa.Order;
 import at.mycompany.shop.catalog.core.model.jpa.Product;
 
 import java.util.List;
@@ -12,4 +13,5 @@ import java.util.List;
 public interface CatalogDataAccess {
     List<Product> getProducts();
     Product getProductById(Integer id);
+    Order getOrderById(Integer id);
 }

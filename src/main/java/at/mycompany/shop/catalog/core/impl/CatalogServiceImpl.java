@@ -1,7 +1,8 @@
 package at.mycompany.shop.catalog.core.impl;
 
 import at.mycompany.shop.catalog.core.api.CatalogService;
-import at.mycompany.shop.catalog.core.model.jpa.Product;
+import at.mycompany.shop.catalog.core.model.jpa.Order;
+import at.mycompany.shop.catalog.core.model.jpa.ProductOrderAmount;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -19,14 +20,12 @@ public class CatalogServiceImpl implements CatalogService {
     EntityManager em;
 
     @Override
-    public Integer createProduct(Product product) {
-        em.persist(product);
+    public Integer createOrder(Order order) {
+        for (ProductOrderAmount pOrderAmount : order.getProductOrderAmounts()) {
+            pOrderAmount.setOrder(order);
+        }
+        em.persist(order);
         em.flush();
-        return product.getId();
-    }
-
-    @Override
-    public Product updateProduct(Product product) {
-        return em.merge(product);
+        return order.getId();
     }
 }
