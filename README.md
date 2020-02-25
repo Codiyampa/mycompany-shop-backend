@@ -1,4 +1,4 @@
-## mycompany-shop-backend 
+# myorder-backend
 
 This project is for checking out the recently released Quarkus framework. 
 
