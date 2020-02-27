@@ -31,10 +31,6 @@ public class CatalogResource {
     @Path("/products")
     public Response getProducts() {
         List<Product> products = catalogDataAccess.getProducts();
-        if(products == null) {
-            return Response.status(Response.Status.NOT_FOUND).entity("No resources found.")
-                    .type(MediaType.TEXT_PLAIN).build();
-        }
         return Response.status(Response.Status.OK).entity(products).build();
     }
 
@@ -52,10 +48,19 @@ public class CatalogResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     @Path("/orders")
     public Response addOrder(Order order) {
         Integer orderId = catalogService.createOrder(order);
         return Response.status(Response.Status.CREATED).entity(orderId).build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/orders")
+    public Response getOrders() {
+        List<Order> orders = catalogDataAccess.getOrders();
+        return Response.status(Response.Status.OK).entity(orders).build();
     }
 
     @GET

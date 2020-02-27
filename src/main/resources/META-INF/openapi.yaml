@@ -1,0 +1,193 @@
+---
+openapi: 3.0.1
+info:
+  title: Backend API
+  version: "1.0"
+paths:
+  /catalog/orders:
+    get:
+      description: Fetch all orders
+      operationId: getOrders
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+    post:
+      description: Create an order
+      operationId: createOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        "201":
+          description: Created
+          content:
+            text/plain:
+              schema:
+                type: number
+        "409":
+          description: Conflict
+  /catalog/orders/{id}:
+    get:
+      description: Fetch order by id
+      operationId: getOrderById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        "404":
+          description: Resource not found for ID
+  /catalog/products:
+    get:
+      description: Fetch all products
+      operationId: getProducts
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+  /catalog/products/{id}:
+    get:
+      description: Fetch product by id
+      operationId: getProductById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        "404":
+          description: Resource not found for ID
+  /catalog/status:
+    get:
+      description: Fetch API status
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+components:
+  schemas:
+    Customer:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+          readOnly: true
+        city:
+          type: string
+        firstName:
+          type: string
+        houseNumber:
+          format: int32
+          type: integer
+        plz:
+          format: int32
+          type: integer
+        secondName:
+          type: string
+        street:
+          type: string
+      required:
+        - id, city, firstName, houseNumber, plz, secondName, street
+    ProductOrderAmount:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+          readOnly: true
+        amount:
+          format: int32
+          type: integer
+        product:
+          $ref: '#/components/schemas/Product'
+      required:
+        - id, amount, product
+    Order:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+          readOnly: true
+        creationDate:
+          type: string
+          format: date-time
+          readOnly: true
+        customer:
+          $ref: '#/components/schemas/Customer'
+        paymentMethod:
+          type: string
+        productOrderAmounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductOrderAmount'
+      required:
+        - id, creationDate, customer, paymentMethod, productOrderAmounts
+    Product:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+          readOnly: true
+        categoryIds:
+          type: array
+          nullable: true
+          readOnly: true
+          items:
+            type: integer
+        name:
+          type: string
+          readOnly: true
+        price:
+          type: number
+          format: double
+          readOnly: true
+      required:
+        - id, categoryIds, name, price
+    Category:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+      required:
+        - id, name

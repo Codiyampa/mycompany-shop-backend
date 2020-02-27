@@ -32,6 +32,12 @@ public class CatalogDataAccessImpl implements CatalogDataAccess {
     }
 
     @Override
+    public List<Order> getOrders() {
+        Query query = em.createQuery("SELECT o FROM order o", Order.class);
+        return (List<Order>) query.getResultList();
+    }
+
+    @Override
     public Order getOrderById(Integer id) {
         return em.find(Order.class, id);
     }

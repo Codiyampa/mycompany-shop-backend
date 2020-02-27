@@ -14,6 +14,6 @@ import javax.ws.rs.ext.Provider;
 public class PersistenceExceptionMapper implements ExceptionMapper<PersistenceException> {
     @Override
     public Response toResponse(PersistenceException e) {
-        return Response.status(Response.Status.BAD_REQUEST).build();
+        return Response.status(Response.Status.CONFLICT).build();
     }
 }

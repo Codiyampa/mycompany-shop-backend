@@ -13,5 +13,6 @@ import java.util.List;
 public interface CatalogDataAccess {
     List<Product> getProducts();
     Product getProductById(Integer id);
+    List<Order> getOrders();
     Order getOrderById(Integer id);
 }

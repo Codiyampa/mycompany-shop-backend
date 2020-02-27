@@ -38,10 +38,6 @@ public class Order extends AbstractBaseEntity {
         return creationDate;
     }
 
-    public void setCreationDate(Instant creationDate) {
-        this.creationDate = creationDate;
-    }
-
     @ManyToOne(
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL
@@ -65,7 +61,7 @@ public class Order extends AbstractBaseEntity {
     }
 
     @OneToMany(
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             mappedBy = "order",
             cascade = CascadeType.ALL,
             orphanRemoval = true
