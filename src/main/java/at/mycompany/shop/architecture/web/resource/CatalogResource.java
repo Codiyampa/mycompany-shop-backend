@@ -1,9 +1,9 @@
-package at.mycompany.shop.catalog.rest;
+package at.mycompany.shop.architecture.web.resource;
 
-import at.mycompany.shop.catalog.core.impl.CatalogDataAccessImpl;
-import at.mycompany.shop.catalog.core.impl.CatalogServiceImpl;
-import at.mycompany.shop.catalog.core.model.jpa.Order;
-import at.mycompany.shop.catalog.core.model.jpa.Product;
+import at.mycompany.shop.domain.model.entity.Order;
+import at.mycompany.shop.domain.model.entity.Product;
+import at.mycompany.shop.domain.service.CatalogDataAccess;
+import at.mycompany.shop.domain.service.CatalogService;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -22,9 +22,9 @@ import java.util.List;
 public class CatalogResource {
 
     @Inject
-    CatalogDataAccessImpl catalogDataAccess;
+    CatalogDataAccess catalogDataAccess;
     @Inject
-    CatalogServiceImpl catalogService;
+    CatalogService catalogService;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

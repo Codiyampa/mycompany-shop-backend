@@ -1,4 +1,4 @@
-package at.mycompany.shop.catalog.core.model.jpa;
+package at.mycompany.shop.domain.model.entity;
 
 /**
  * @author: Codiyampa
@@ -8,7 +8,8 @@ package at.mycompany.shop.catalog.core.model.jpa;
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 
-@Entity(name = "product_order_amount")
+@Entity
+@Table(name = "product_order_amount")
 public class ProductOrderAmount extends AbstractBaseEntity {
     private Order order;
     private Product product;

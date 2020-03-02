@@ -1,4 +1,4 @@
-package at.mycompany.shop.catalog.rest.exception;
+package at.mycompany.shop.architecture.web.mapper;
 
 /**
  * @author: Codiyampa

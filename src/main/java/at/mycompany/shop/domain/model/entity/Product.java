@@ -1,4 +1,4 @@
-package at.mycompany.shop.catalog.core.model.jpa;
+package at.mycompany.shop.domain.model.entity;
 
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  * @date: 13.02.2020
  */
 
-@Entity(name = "product")
+@Entity
 public class Product extends AbstractBaseEntity {
     private String name;
     private BigDecimal price;

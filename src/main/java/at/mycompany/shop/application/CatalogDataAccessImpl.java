@@ -1,8 +1,8 @@
-package at.mycompany.shop.catalog.core.impl;
+package at.mycompany.shop.application;
 
-import at.mycompany.shop.catalog.core.api.CatalogDataAccess;
-import at.mycompany.shop.catalog.core.model.jpa.Order;
-import at.mycompany.shop.catalog.core.model.jpa.Product;
+import at.mycompany.shop.domain.service.CatalogDataAccess;
+import at.mycompany.shop.domain.model.entity.Order;
+import at.mycompany.shop.domain.model.entity.Product;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

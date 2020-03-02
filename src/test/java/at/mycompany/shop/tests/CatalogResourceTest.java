@@ -1,4 +1,4 @@
-package at.mycompany.tests;
+package at.mycompany.shop.tests;
 
 import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.h2.H2DatabaseTestResource;

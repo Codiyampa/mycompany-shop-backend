@@ -1,4 +1,4 @@
-package at.mycompany.shop.catalog.core.model.jpa;
+package at.mycompany.shop.domain.model.entity;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

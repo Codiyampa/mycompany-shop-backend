@@ -1,4 +1,4 @@
-package at.mycompany.shop.catalog.core.model.jpa;
+package at.mycompany.shop.domain.model.entity;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -9,7 +9,7 @@ import java.util.Set;
  * @date: 20.02.2020
  */
 
-@Entity(name = "order")
+@Entity
 @Table(name="orders")
 public class Order extends AbstractBaseEntity {
     private Instant creationDate;

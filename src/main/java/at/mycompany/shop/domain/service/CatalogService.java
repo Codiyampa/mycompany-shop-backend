@@ -1,6 +1,6 @@
-package at.mycompany.shop.catalog.core.api;
+package at.mycompany.shop.domain.service;
 
-import at.mycompany.shop.catalog.core.model.jpa.Order;
+import at.mycompany.shop.domain.model.entity.Order;
 
 /**
  * @author: Codiyampa

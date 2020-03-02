@@ -1,4 +1,4 @@
-package at.mycompany.shop.catalog.core.model.jpa;
+package at.mycompany.shop.domain.model.entity;
 
 /**
  * @author: Codiyampa
@@ -9,7 +9,7 @@ import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity(name = "customer")
+@Entity
 public class Customer extends AbstractBaseEntity {
     private String firstName;
     private String secondName;

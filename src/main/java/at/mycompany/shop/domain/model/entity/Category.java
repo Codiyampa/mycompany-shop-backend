@@ -1,4 +1,4 @@
-package at.mycompany.shop.catalog.core.model.jpa;
+package at.mycompany.shop.domain.model.entity;
 
 /**
  * @author: Codiyampa
@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity(name = "category")
+@Entity
 public class Category extends AbstractBaseEntity {
     private String name;
     private Set<Product> products = new HashSet<>();
