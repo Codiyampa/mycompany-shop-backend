@@ -15,23 +15,14 @@ import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
 @QuarkusTestResource(H2DatabaseTestResource.class)
-public class CatalogResourceTest {
-
-    @Test
-    public void testStatusEndpoint() {
-        given()
-          .when().get("/catalog/status")
-          .then()
-             .statusCode(200)
-             .body(is("online"));
-    }
+public class ResourceTest {
 
     @Test
     public void testProductByIdEndpoint() {
         Integer productId = 5;
         given()
                 .pathParam("id", productId)
-                .when().get("/catalog/products/{id}")
+                .when().get("/v1/products/{id}")
                 .then()
                 .statusCode(200)
                 .body(is("{\"id\":5,\"categoryIds\":[3],\"name\":\"Pizza Calzone\",\"price\":8.80}"));
@@ -40,7 +31,7 @@ public class CatalogResourceTest {
     @Test
     public void testProductsEndpoint() {
         given()
-                .when().get("/catalog/products")
+                .when().get("/v1/products")
                 .then()
                 .statusCode(200)
                 .body("$.size()", is(14),

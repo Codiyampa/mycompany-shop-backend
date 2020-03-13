@@ -4,7 +4,7 @@ info:
   title: Backend API
   version: "1.0"
 paths:
-  /catalog/orders:
+  /v1/orders:
     get:
       description: Fetch all orders
       operationId: getOrders
@@ -34,7 +34,7 @@ paths:
                 type: number
         "409":
           description: Conflict
-  /catalog/orders/{id}:
+  /v1/orders/{id}:
     get:
       description: Fetch order by id
       operationId: getOrderById
@@ -54,7 +54,7 @@ paths:
                 $ref: '#/components/schemas/Order'
         "404":
           description: Resource not found for ID
-  /catalog/products:
+  /v1/products:
     get:
       description: Fetch all products
       operationId: getProducts
@@ -67,7 +67,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Product'
-  /catalog/products/{id}:
+  /v1/products/{id}:
     get:
       description: Fetch product by id
       operationId: getProductById
@@ -87,16 +87,6 @@ paths:
                 $ref: '#/components/schemas/Product'
         "404":
           description: Resource not found for ID
-  /catalog/status:
-    get:
-      description: Fetch API status
-      responses:
-        "200":
-          description: OK
-          content:
-            text/plain:
-              schema:
-                type: string
 components:
   schemas:
     Customer:
