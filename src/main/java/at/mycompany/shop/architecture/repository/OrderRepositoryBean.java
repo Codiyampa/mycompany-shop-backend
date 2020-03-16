@@ -19,10 +19,10 @@ import java.util.List;
 public class OrderRepositoryBean extends AbstractRepositoryBean<Order, Integer> implements OrderRepository {
     @Override
     public List<Order> findByDate(Instant beginDate, Instant endDate) {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Order> qry = cb.createQuery(Order.class);
+        CriteriaBuilder cb = getCriteriaBuilder();
+        CriteriaQuery<Order> qry = getCriteriaQuery(cb);
+        Root<Order> order = getRoot(qry);
 
-        Root<Order> order = qry.from(Order.class);
         qry.select(order);
         if (beginDate != null) {
             qry.where(cb.greaterThanOrEqualTo(order.get("creationDate"), beginDate));
@@ -31,6 +31,6 @@ public class OrderRepositoryBean extends AbstractRepositoryBean<Order, Integer> 
             qry.where(cb.lessThanOrEqualTo(order.get("creationDate"), endDate));
         }
 
-        return em.createQuery(qry).getResultList();
+        return getResultList(qry);
     }
 }

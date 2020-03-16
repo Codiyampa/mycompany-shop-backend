@@ -19,17 +19,17 @@ public class CustomerRepositoryBean extends AbstractRepositoryBean<Customer, Int
     @Override
     public Customer findByName(String firstName, String secondName) {
         try {
-            CriteriaBuilder cb = em.getCriteriaBuilder();
-            CriteriaQuery<Customer> qry = cb.createQuery(Customer.class);
+            CriteriaBuilder cb = getCriteriaBuilder();
+            CriteriaQuery<Customer> qry = getCriteriaQuery(cb);
+            Root<Customer> customer = getRoot(qry);
 
-            Root<Customer> customer = qry.from(Customer.class);
             qry.select(customer);
             qry.where(
                     cb.equal(customer.get("firstName"), firstName),
                     cb.equal(customer.get("secondName"), secondName)
             );
 
-            return em.createQuery(qry).getSingleResult();
+            return getSingleResult(qry);
         } catch (NoResultException e) {
             return null;
         }
